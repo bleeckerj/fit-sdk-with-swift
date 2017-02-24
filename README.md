@@ -30,13 +30,6 @@ Also notice the peculiar bridging header — `exampleios-Bridging-Header.h`. Thi
 
 For this particular configuration, my bridging header is named `exampleios-Bridging-Header.h` and it looks like all of this:
 
-`//
-//  Use this file to import your target's public headers that you would like to expose to Swift.
-//
-
-#import "WrapperForSwift.h"
-`
-
 That's it. It just exposes my Objective-C wrapper, which itself, for this simple test case, simply has one method exposed, called `decode` which, like..does that..does what it needs to do to "decode" a sample FIT file. There's some business in there hard-coded (the path to the file) but this is just a test to see if I can get the dang thing to take. This particular class was basically copied and modified from the existing `ActivityExample.mm` file that is part of the SDK. Note the naming — `.mm` — which is the Objective-C++ file naming extension. The class also contains a Objective-C++ class (I think what in the Java world would be an inner-class?) called ActivityListener that adheres to a protocol by which the decoder can make callbacks to this listener when it decodes specific message types within the FIT file. Which is useful.
 
 So — that's all the configuration and setup. Now, to the Swift file itself. I created a test class called `SwiftThatUsesWrapperForSwift.swift` It needs to see the wrapper class, described above, and evidently it is able to with that mention of the Objective-C class to be exposed in that slightly magically instantiated bridging header. You can see that I also had the `@objc` keyword in front of the class. That's if I want to go the other way — have Objective-C call a Swift method. Haven't done that, but that aspect could be useful, particularly in the context of callbacks that may happen during the decoding process and the like. What I have not done yet is return results and so forth. I'm assuming that'll all be fine. (But I also assumed that figuring out how to call methods in the SDK would take 12-17 minutes of my time.)
