@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc class SwiftThatUsesWrapperForSwift:NSObject {
+/*@objc */class SwiftThatUsesWrapperForSwift:NSObject {
     func doSomething() {
         let wrapper:WrapperForSwift = WrapperForSwift()
         wrapper.decode()
