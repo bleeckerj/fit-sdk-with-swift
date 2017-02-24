@@ -6,7 +6,7 @@ The most useful aspect of the SDK is the ability to encode and decode in the FIT
 
 The SDK has examples and static libraries for a variety of languages, including C, C++, Objective-C, Objective-C++, C# and jars for Java.
 
-But — I needed it to work with Swift, which was my language of choice for a from-the-ground iOS app.
+But — I needed it to work with Swift, which was my language of choice for a from-the-ground iOS app. Building naively caused a trainwreck that kept happening with no end in sight. In frustration and like a mad dog after a rabbit, I built my own parser in Swift — after days and days of not getting the thing to build with Swift. But then Will made me realize that that's not really a solution as it's an SDK that evolves and I was just making a maintenance task for myself. On top of everything else. So, basically – I had to get it to work..
 
 ####So..now what?
 Most resources explain that interoperability is possible between Swift and C, C++, Objective-C and Objective-C++ (cf: [How To Call Objective-C Code From Swift](http://stackoverflow.com/questions/24002369/how-to-call-objective-c-code-from-swift) and [Can I Have Swift Obj-C and C Files In The Same XCode Project](http://stackoverflow.com/questions/32541268/can-i-have-swift-objective-c-c-and-c-files-in-the-same-xcode-project/32546879#32546879), but I had a bit of a struggle trying to figure out how to get the static library for this SDK to build such that Swift source could call methods in the SDK (cf: [Building Swift and Objective-C and a Static C++ Library Together](http://stackoverflow.com/questions/42383838/building-swift-objective-c-and-a-static-c-library-together)). I mostly ended up with a plaintive linker error complaining that some class in the standard c++ library (`libstdc++`) like `<string>` or `<vector>` or `<map>` couldn't be found. Which isn't the best clue. Ultimately, after puzzling this through with some folks who were very generous with their time, I came to the conclusion that, actually, the linker error is indicating that the C++ from those libraries were just completely alien to Swift. In fact, those classes from the standard library that were breaking things have their own native forms in Foundation — String, Array and Dictionary.
@@ -30,7 +30,25 @@ Also notice the peculiar bridging header — `exampleios-Bridging-Header.h`. Thi
 
 For this particular configuration, my bridging header is named `exampleios-Bridging-Header.h` and it looks like all of this:
 
-That's it. It just exposes my Objective-C wrapper, which itself, for this simple test case, simply has one method exposed, called `decode` which, like..does that..does what it needs to do to "decode" a sample FIT file. There's some business in there hard-coded (the path to the file) but this is just a test to see if I can get the dang thing to take. This particular class was basically copied and modified from the existing `ActivityExample.mm` file that is part of the SDK. Note the naming — `.mm` — which is the Objective-C++ file naming extension. The class also contains a Objective-C++ class (I think what in the Java world would be an inner-class?) called ActivityListener that adheres to a protocol by which the decoder can make callbacks to this listener when it decodes specific message types within the FIT file. Which is useful.
+
+```Objective-C
+#import "WrapperForSwift.h"
+```
+
+That's it. It just exposes my Objective-C wrapper class called WrapperForSwift which itself, for this simple test case, simply has one method exposed, called `decode` which, like..does that..does what it needs to do to "decode" a sample FIT file. That class' header (`WrapperForSwift.h`) looks like this:
+
+```Objective-C
+#import <Foundation/Foundation.h>
+
+
+@interface WrapperForSwift : NSObject 
+    - (UInt8)decode;
+@end
+```
+
+And the implementation, called `WrapperForSwift.mm` has all the methods that call aspects of the SDK's API as needed to perform a decode operation on a FIT file. (Where I had been having trouble was not having this "wrapper" idiom tidied up. I'm not sure exactly where I went wrong except to say that the build tools were expecting to compile C++ from an Objective-C class and ran into a brick wall when it hit all the includes in the SDK's code, including things like `#import <vector>` and the like.)
+
+There's some business in there hard-coded (the path to the file) but this is just a test to see if I can get the dang thing to take. This particular class was basically copied and modified from the existing `ActivityExample.mm` file that is part of the SDK. Note the naming — `.mm` — which is the Objective-C++ file naming extension. The class also contains a Objective-C++ class (I think what in the Java world would be an inner-class?) called ActivityListener that adheres to a protocol by which the decoder can make callbacks to this listener when it decodes specific message types within the FIT file. Which is useful.
 
 So — that's all the configuration and setup. Now, to the Swift file itself. I created a test class called `SwiftThatUsesWrapperForSwift.swift` It needs to see the wrapper class, described above, and evidently it is able to with that mention of the Objective-C class to be exposed in that slightly magically instantiated bridging header. You can see that I also had the `@objc` keyword in front of the class. That's if I want to go the other way — have Objective-C call a Swift method. Haven't done that, but that aspect could be useful, particularly in the context of callbacks that may happen during the decoding process and the like. What I have not done yet is return results and so forth. I'm assuming that'll all be fine. (But I also assumed that figuring out how to call methods in the SDK would take 12-17 minutes of my time.)
 
