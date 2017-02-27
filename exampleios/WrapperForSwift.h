@@ -11,4 +11,5 @@
 
 @interface WrapperForSwift : NSObject 
     - (UInt8)decode;
+- (void)method_callback:(Float64)val;
 @end

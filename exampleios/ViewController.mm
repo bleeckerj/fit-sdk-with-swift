@@ -34,15 +34,15 @@
     [wrapper doSomething];
     
     
-    SettingsExample *se = [[SettingsExample alloc] init];
-    [se encode];
-    [se decode];
-    MonitoringExample *me = [[MonitoringExample alloc] init];
-    [me encode];
-    [me decode];
-    ActivityExample *ae = [[ActivityExample alloc] init];
-    [ae encode];
-    [ae decode];
+//    SettingsExample *se = [[SettingsExample alloc] init];
+//    [se encode];
+//    [se decode];
+//    MonitoringExample *me = [[MonitoringExample alloc] init];
+//    [me encode];
+//    [me decode];
+//    ActivityExample *ae = [[ActivityExample alloc] init];
+//    [ae encode];
+//    [ae decode];
 }
 
 - (void)didReceiveMemoryWarning {
