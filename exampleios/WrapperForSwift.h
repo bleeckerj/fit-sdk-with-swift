@@ -8,8 +8,12 @@
 //
 #import <Foundation/Foundation.h>
 
+@class SwiftThatUsesWrapperForSwift;
 
-@interface WrapperForSwift : NSObject 
-    - (UInt8)decode;
+@interface WrapperForSwift : NSObject
+- (id)init:(SwiftThatUsesWrapperForSwift *)_supervisor;
+- (NSData *)decode:(NSString *)path;
+- (UInt8)encode;
 - (void)method_callback:(Float64)val;
+- (void)setSupervisor:(SwiftThatUsesWrapperForSwift *)_supervisor;
 @end
