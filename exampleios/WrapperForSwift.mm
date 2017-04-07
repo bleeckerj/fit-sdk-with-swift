@@ -26,7 +26,7 @@ class ActivityListener : fit::FileIdMesgListener, fit::MesgListener, fit::EventM
     dispatch_block_t simple_block;
     typedef FIT_UINT8 (^block_with_record_mesg_param)(fit::RecordMesg);
     typedef FIT_UINT8 (^block_with_event_mesg_param)(fit::EventMesg);
-    typedef FIT_UINT8 (^block_with_fileid_mesg_parm)(fit::FileIdMesg);
+    typedef void (^block_with_fileid_mesg_parm)(fit::FileIdMesg);
     typedef FIT_UINT8 (^block_with_software_mesg_param)(fit::SoftwareMesg);
     typedef FIT_UINT8 (^block_with_session_mesg_param)(fit::SessionMesg);
     block_with_record_mesg_param record_mesg_block;
@@ -134,10 +134,10 @@ public:
         NSLog(@"Product: %d", mesg.GetProduct());
         NSLog(@"SerialNumber: %d", mesg.GetSerialNumber());
         
-        FIT_UINT8 result;
+        //FIT_UINT8 result;
         if(fileid_mesg_block != nil) {
-            result = fileid_mesg_block(mesg);
-            NSLog(@"RESULT=%d", result);
+            fileid_mesg_block(mesg);
+            //NSLog(@"RESULT=%d", result);
         }
         
         
@@ -192,9 +192,10 @@ public:
                 case FIT_BASE_TYPE_FLOAT64:
                     NSLog(@"%f", field.GetFLOAT64Value(j));
                     break;
-//                case FIT_BASE_TYPE_STRING:
-//                    NSLog(@"%@", [Example stringForWString:field.GetSTRINGValue(j)]);
-//                    break;
+                case FIT_BASE_TYPE_STRING:
+                    //NSLog(@"%@", [Example stringForWString:field.GetSTRINGValue(j)]);
+                    NSLog(@"Some String");
+                    break;
                 default:
                     break;
             }
@@ -247,6 +248,9 @@ FIT_FLOAT64 SEMICIRCLES_PER_DEGREE;
 //    NSString *docsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
 //    NSString *filePath = [docsPath stringByAppendingPathComponent:fileName];
 //    return fopen([filePath UTF8String], params);
+   // fileName = @"/Users/julian/Dropbox \(OMATA)/Engineering Department/DEVICE/FIT_FILES/RHYS/";
+    
+    
     return fopen([fileName UTF8String], params);
 }
 /**
@@ -304,10 +308,8 @@ FIT_FLOAT64 SEMICIRCLES_PER_DEGREE;
 
         file = [self openFile:fileName withParams:"rb"];
         
-        NSFileHandle *fh = [NSFileHandle fileHandleForReadingAtPath:fileName];
-        result = [fh readDataToEndOfFile];
-        
-        
+//        NSFileHandle *fh = [NSFileHandle fileHandleForReadingAtPath:fileName];
+//        result = [fh readDataToEndOfFile];
         
         
         if ([fd IsFit:file]) {
@@ -400,13 +402,52 @@ FIT_FLOAT64 SEMICIRCLES_PER_DEGREE;
         });
         
         
-        listener.setup_block_with_fileid_mesg_param(^FIT_UINT8(fit::FileIdMesg mesg) {
+        listener.setup_block_with_fileid_mesg_param(^void(fit::FileIdMesg mesg) {
             //[self fitTimestampToNSDate:mesg.GetTimeCreated()];
-            NSLog(@"Time Created: %d", mesg.GetTimeCreated());
-            NSLog(@"Manufacturer: %d", mesg.GetManufacturer());
+//            NSLog(@"Time Created: %d", mesg.GetTimeCreated());
+//            NSLog(@"Manufacturer: %d", mesg.GetManufacturer());
+//
+            
+        
+            NSMutableDictionary *x = [[NSMutableDictionary alloc]init];
+            
+            for(int i=0; i<mesg.GetNumFields(); i++) {
+               fit::Field *field =  mesg.GetFieldByIndex(i);
+                 NSLog(@"   Field %d (%s) has %d value(s) and units %s", i, field->GetName().c_str(), field->GetNumValues(), field->GetUnits().c_str());
+                
+            
+                
+                NSString *name = [[NSString alloc]initWithBytes:field->GetName().data() length:field->GetName().length() encoding:NSUTF8StringEncoding];
+                
+                [x setObject:[NSNumber numberWithDouble:field->GetNumValues()] forKey:name];
+                
+            }
+            
+ /**
+            NSString *product_name = [[NSString alloc]initWithBytes:mesg.GetProductName().data() length:mesg.GetProductName().length() encoding:NSUTF32LittleEndianStringEncoding];
+            
+            
+//            [NSString stringWithCString:mesg.GetProductName().c_str() encoding:[NSString defaultCStringEncoding]]
+            
+//            [NSString stringWithUTF8String:mesg.GetProductName().c_str()];
+            
+            NSDictionary *d = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:mesg.GetProduct()], @"product",
+                               [self dateToNSString:[self fitTimestampToUTCNSDate:mesg.GetTimeCreated()]], @"time_created",
+                               product_name, @"product_name",
+                               [NSNumber numberWithDouble:mesg.GetSerialNumber()], @"serial_number",
+                               [NSNumber numberWithDouble:mesg.GetManufacturer()], @"manufacturer",
+                               [NSNumber numberWithDouble:mesg.GetProduct()], @"product",
+                               nil];
+            **/
+            if(supervisor) {
+                NSString *msg_name = [[NSString alloc]initWithBytes:mesg.GetName().data() length:mesg.GetName().length() encoding:NSUTF8StringEncoding];
+                
+                NSDictionary *d = [NSDictionary dictionaryWithObjectsAndKeys:x, msg_name, nil];
+                
+                [supervisor callbackWithFileIDMesg:d];
+            }
             //mesg.GetProductName().c_str();
             
-            return 0;
         });
         
         listener.setup_block_with_software_mesg_param(^FIT_UINT8(fit::SoftwareMesg mesg) {
@@ -458,36 +499,7 @@ FIT_FLOAT64 SEMICIRCLES_PER_DEGREE;
     return result;
 }
 
-/**
-- (NSDate *)dateToLocal:(NSDate *)date
-{
-//    NSTimeInterval timeZoneSeconds = [[NSTimeZone localTimeZone] secondsFromGMT];
-//    NSDate *dateInLocalTimezone = [date dateByAddingTimeInterval:timeZoneSeconds];
-//    
-//    
-//    
-    
-    
-    NSCalendar *anotherCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
 
-    
-    
-    anotherCalendar.timeZone = [NSTimeZone localTimeZone];
-    
-    NSDateComponents *anotherComponents = [anotherCalendar components:(NSCalendarUnitEra | NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitNanosecond) fromDate:date];
-    [anotherComponents setCalendar:anotherCalendar];
-
-    return [anotherComponents date];
-    
-    
-    
-    
-    
-    
-    
-    //return dateInLocalTimezone;
-}
- **/
 
 - (NSString *)dateToNSString:(NSDate *) date
 {
