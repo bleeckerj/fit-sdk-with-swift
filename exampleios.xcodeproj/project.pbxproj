@@ -13,13 +13,13 @@
 		90B4EF2F1CD3B3320047D372 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90B4EF2D1CD3B3320047D372 /* Main.storyboard */; };
 		90B4EF311CD3B3320047D372 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90B4EF301CD3B3320047D372 /* Assets.xcassets */; };
 		90B4EF341CD3B3320047D372 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90B4EF321CD3B3320047D372 /* LaunchScreen.storyboard */; };
-		90B4EF3C1CD3B4260047D372 /* libFitSdkCppiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90B4EF3B1CD3B4260047D372 /* libFitSdkCppiOS.a */; };
 		90B4EF451CD3B4D30047D372 /* ActivityExample.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90B4EF3E1CD3B4D30047D372 /* ActivityExample.mm */; };
 		90B4EF461CD3B4D30047D372 /* Example.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90B4EF401CD3B4D30047D372 /* Example.mm */; };
 		90B4EF471CD3B4D30047D372 /* MonitoringExample.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90B4EF421CD3B4D30047D372 /* MonitoringExample.mm */; };
 		90B4EF481CD3B4D30047D372 /* SettingsExample.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90B4EF441CD3B4D30047D372 /* SettingsExample.mm */; };
 		B98242601E5FB04B002D99FC /* WrapperForSwift.mm in Sources */ = {isa = PBXBuildFile; fileRef = B982425F1E5FB04B002D99FC /* WrapperForSwift.mm */; };
 		B98242641E5FB457002D99FC /* SwiftThatUsesWrapperForSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98242631E5FB457002D99FC /* SwiftThatUsesWrapperForSwift.swift */; };
+		B9B4AE161E98134B0059ADEB /* libFitSdkCppiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B9B4AE151E98134B0059ADEB /* libFitSdkCppiOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +33,6 @@
 		90B4EF301CD3B3320047D372 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		90B4EF331CD3B3320047D372 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		90B4EF351CD3B3320047D372 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		90B4EF3B1CD3B4260047D372 /* libFitSdkCppiOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFitSdkCppiOS.a; path = "../../MacStaticLib/build/ReleaseiOS-universal/libFitSdkCppiOS.a"; sourceTree = "<group>"; };
 		90B4EF3D1CD3B4D30047D372 /* ActivityExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityExample.h; sourceTree = "<group>"; };
 		90B4EF3E1CD3B4D30047D372 /* ActivityExample.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ActivityExample.mm; sourceTree = "<group>"; };
 		90B4EF3F1CD3B4D30047D372 /* Example.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Example.h; sourceTree = "<group>"; };
@@ -46,6 +45,7 @@
 		B98242611E5FB174002D99FC /* WrapperForSwift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WrapperForSwift.h; sourceTree = "<group>"; };
 		B98242621E5FB457002D99FC /* exampleios-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "exampleios-Bridging-Header.h"; sourceTree = "<group>"; };
 		B98242631E5FB457002D99FC /* SwiftThatUsesWrapperForSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftThatUsesWrapperForSwift.swift; sourceTree = "<group>"; };
+		B9B4AE151E98134B0059ADEB /* libFitSdkCppiOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFitSdkCppiOS.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90B4EF3C1CD3B4260047D372 /* libFitSdkCppiOS.a in Frameworks */,
+				B9B4AE161E98134B0059ADEB /* libFitSdkCppiOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,7 +63,7 @@
 		90B4EF181CD3B3320047D372 = {
 			isa = PBXGroup;
 			children = (
-				90B4EF3B1CD3B4260047D372 /* libFitSdkCppiOS.a */,
+				B9B4AE151E98134B0059ADEB /* libFitSdkCppiOS.a */,
 				90B4EF231CD3B3320047D372 /* exampleios */,
 				90B4EF221CD3B3320047D372 /* Products */,
 			);
@@ -139,10 +139,11 @@
 		90B4EF191CD3B3320047D372 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0830;
 				TargetAttributes = {
 					90B4EF201CD3B3320047D372 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 9DCTLJ9BY7;
 						LastSwiftMigration = 0830;
 					};
 				};
@@ -230,8 +231,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -274,8 +277,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -294,6 +299,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -304,11 +310,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 9DCTLJ9BY7;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				HEADER_SEARCH_PATHS = "../../MacStaticLib/build/ReleaseiOS-universal/usr/local/include";
+				HEADER_SEARCH_PATHS = "/Users/julian/Code/FitSDKRelease_20.24.01/cpp/MacStaticLib/build/ReleaseiOS-universal/usr/local/include";
 				INFOPLIST_FILE = exampleios/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "../../MacStaticLib/build/ReleaseiOS-universal/";
+				LIBRARY_SEARCH_PATHS = (
+					"../../MacStaticLib/build/ReleaseiOS-universal/",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.garmin.fit.exampleios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "exampleios/exampleios-Bridging-Header.h";
@@ -322,11 +333,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 9DCTLJ9BY7;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				HEADER_SEARCH_PATHS = "../../MacStaticLib/build/ReleaseiOS-universal/usr/local/include";
+				HEADER_SEARCH_PATHS = "/Users/julian/Code/FitSDKRelease_20.24.01/cpp/MacStaticLib/build/ReleaseiOS-universal/usr/local/include";
 				INFOPLIST_FILE = exampleios/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "../../MacStaticLib/build/ReleaseiOS-universal/";
+				LIBRARY_SEARCH_PATHS = (
+					"../../MacStaticLib/build/ReleaseiOS-universal/",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.garmin.fit.exampleios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "exampleios/exampleios-Bridging-Header.h";
