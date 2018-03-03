@@ -1,0 +1,11 @@
+Generated header contains interfaces for all classes, even ones that won't work from Obj-c.
+
+Generated header is created when? And over and over again? 
+
+I had to take all aspects of the interface in that generated header out that were unnecessary (and causing compiler errors, largely it seemed because of violations of Swift Type Compatibility - cf: https://developer.apple.com/library/content/documentation/Swift/Conceptual/BuildingCocoaApps/InteractingWithObjective-CAPIs.html#//apple_ref/doc/uid/TP40014216-CH4-ID53)
+
+But it also seems that if I include #import <UIKit/UIKit.h> in that generated (PROJECT_NAME-Swift.h) file then the compiler errors go away. So then, like..I included #import <UIKit/UIKit.h> in my wrapper class, WrapperForSwift.mm at the top. :unamused:
+
+So my question is: are there any "keywords" to apply to Swift source that can tell the compiler that it should (or shouldn't) include it in that generated Xcode-generated header (cf:'Importing Swift into Objective-C' at https://developer.apple.com/library/content/documentation/Swift/Conceptual/BuildingCocoaApps/MixandMatch.html
+
+The other thing is — when is this header generated?

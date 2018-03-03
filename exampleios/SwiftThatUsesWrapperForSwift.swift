@@ -64,15 +64,13 @@ import Foundation
         
         wrapper.setSupervisor(self)
         
-        //        wrapper.decode("/Users/julian/Code/FitSDKRelease_20.24.01/examples/Activity.fit")
+        wrapper.decode("/Users/julian/Code/FitSDKRelease_20.54.00/examples/Activity.fit")
         
         let fm: FileManager = FileManager()
         
         var files:[String]
         do {
-            //let path = "/Users/julian/Desktop/Thingsee/Activities/"
-
-            let path = "/Users/julian/Desktop/Thingsee/FIT_FILES/EZRA"
+            let path = "/Users/"
             
             
             files = try fm.contentsOfDirectory(atPath: path.appending("/"))
