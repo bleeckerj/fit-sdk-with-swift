@@ -83,3 +83,5 @@ Useful Links I Gathered During This:
 [Problems with FIT SDK in an Xcode Swift Project](https://www.thisisant.com/forum/viewthread/6697/)
 
 [Swift and Objective-C in the Same Project](https://developer.apple.com/library/content/documentation/Swift/Conceptual/BuildingCocoaApps/MixandMatch.html#//apple_ref/doc/uid/TP40014216-CH10-ID122)
+
+[How do I build an iOS Framwork with the FIT C Library?](https://stackoverflow.com/questions/50733326/how-do-i-build-an-ios-framework-with-the-fit-c-library/50754748)
