@@ -26,31 +26,31 @@ import Foundation
     var fileIDMessages: Array<Any> = Array()
     
     
-    func callback(timestamp: UInt32) -> Void {
+    @objc func callback(timestamp: UInt32) -> Void {
         NSLog("%d", timestamp)
     }
     
-    func callback(eventMesg: NSDictionary) -> Void {
+    @objc func callback(eventMesg: NSDictionary) -> Void {
         eventMessages.append(eventMesg)
     }
     
-    func callback(sessionMesg: NSDictionary) -> Void {
+    @objc func callback(sessionMesg: NSDictionary) -> Void {
         sessionMessages.append(sessionMesg)
         NSLog("\(sessionMessages)")
     }
     
-    func callback(recordMesg: NSDictionary) -> UInt8 {
+    @objc func callback(recordMesg: NSDictionary) -> UInt8 {
         NSLog("%@", recordMesg)
         recordMessages.append(recordMesg)
         //recordMesgs.append(recordMesg as! Dictionary<String, Any>)
         return 0;
     }
     
-    func callback(fileIDMesg: NSDictionary) -> Void {
+    @objc func callback(fileIDMesg: NSDictionary) -> Void {
         fileIDMessages.append(fileIDMesg)
     }
     
-    func decodeFitFile(file : URL)
+    @objc func decodeFitFile(file : URL)
     {
         let wrapper:WrapperForSwift = WrapperForSwift(self)
         
@@ -59,7 +59,7 @@ import Foundation
         
     }
     
-    func doSomething() {
+    @objc func doSomething() {
         let wrapper:WrapperForSwift = WrapperForSwift(self)
         
         wrapper.setSupervisor(self)

@@ -143,8 +143,8 @@
 				TargetAttributes = {
 					90B4EF201CD3B3320047D372 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = 9DCTLJ9BY7;
-						LastSwiftMigration = 0830;
+						DevelopmentTeam = 2424HP5BD8;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -310,7 +310,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 9DCTLJ9BY7;
+				DEVELOPMENT_TEAM = 2424HP5BD8;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				HEADER_SEARCH_PATHS = "/Users/julian/Code/FitSDKRelease_20.54.00/cpp/MacStaticLib/build/ReleaseiOS-universal/usr/local/include";
 				INFOPLIST_FILE = exampleios/Info.plist;
@@ -320,11 +320,12 @@
 					"../../MacStaticLib/build/ReleaseiOS-universal/",
 					"$(PROJECT_DIR)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.garmin.fit.exampleios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nearfuturelaboratory.fit.exampleios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "exampleios/exampleios-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -333,7 +334,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 9DCTLJ9BY7;
+				DEVELOPMENT_TEAM = 2424HP5BD8;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				HEADER_SEARCH_PATHS = "/Users/julian/Code/FitSDKRelease_20.54.00/cpp/MacStaticLib/build/ReleaseiOS-universal/usr/local/include";
 				INFOPLIST_FILE = exampleios/Info.plist;
@@ -343,10 +344,11 @@
 					"../../MacStaticLib/build/ReleaseiOS-universal/",
 					"$(PROJECT_DIR)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.garmin.fit.exampleios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nearfuturelaboratory.fit.exampleios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "exampleios/exampleios-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
